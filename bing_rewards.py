@@ -29,13 +29,19 @@ def bing_search_web():
             wait.until(EC.presence_of_element_located((By.ID, 'id_s')))
             driver.find_element_by_id('id_s').click()
 
+            time.sleep(1)
+
             wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'id_name')))
             driver.find_element_by_class_name('id_name').click()
+
+            time.sleep(1)
 
             wait.until(EC.presence_of_element_located((By.ID, 'i0116')))
             wait.until(EC.presence_of_element_located((By.ID, 'idSIButton9')))
             driver.find_element_by_id('i0116').send_keys(USERNAME)
             driver.find_element_by_id('idSIButton9').click()
+
+            time.sleep(1)
 
             wait.until(EC.presence_of_element_located((By.ID, 'i0118')))
             wait.until(EC.presence_of_element_located((By.ID, 'idSIButton9')))
@@ -77,10 +83,14 @@ def bing_search_mobile():
             wait.until(EC.presence_of_element_located((By.ID, 'HBSignIn')))
             driver.find_element_by_id('HBSignIn').click()
 
+            time.sleep(1)
+
             wait.until(EC.presence_of_element_located((By.ID, 'i0116')))
             wait.until(EC.presence_of_element_located((By.ID, 'idSIButton9')))
             driver.find_element_by_id('i0116').send_keys(USERNAME)
             driver.find_element_by_id('idSIButton9').click()
+
+            time.sleep(1)
 
             wait.until(EC.presence_of_element_located((By.ID, 'i0118')))
             wait.until(EC.presence_of_element_located((By.ID, 'idSIButton9')))
