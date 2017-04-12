@@ -48,17 +48,18 @@ def bing_search_web():
             driver.find_element_by_id('i0118').send_keys(PASSWORD)
             driver.find_element_by_id('idSIButton9').click()
 
-            time.sleep(1) #will redirect back to Bing
+            time.sleep(5) #will redirect back to Bing
 
             num_searches_remaining = ALLOWED_WEB_SEARCHES - web_searches
             for i in xrange(num_searches_remaining):
-                wait.until(EC.presence_of_element_located((By.ID, 'sb_form_q')))
+                #wait.until(EC.presence_of_element_located((By.ID, 'sb_form_q')))
                 driver.find_element_by_id('sb_form_q').clear()
                 driver.find_element_by_id('sb_form_q').send_keys(generate_search(), Keys.RETURN)
                 web_searches += 1
                 time.sleep(5)
-        except Exception:
+        except Exception as e:
             print "Caught exception. Continuing"
+            print e
         finally:
             driver.quit()
 
@@ -97,11 +98,11 @@ def bing_search_mobile():
             driver.find_element_by_id('i0118').send_keys(PASSWORD)
             driver.find_element_by_id('idSIButton9').click()
 
-            time.sleep(1) #will redirect back to Bing
+            time.sleep(5) #will redirect back to Bing
 
             num_searches_remaining = ALLOWED_MOBILE_SEARCHES - mobile_searches
             for i in xrange(num_searches_remaining):
-                wait.until(EC.presence_of_element_located((By.ID, 'sb_form_q')))
+                #wait.until(EC.presence_of_element_located((By.ID, 'sb_form_q')))
                 driver.find_element_by_id('sb_form_q').clear()
                 driver.find_element_by_id('sb_form_q').send_keys(generate_search(), Keys.RETURN)
                 mobile_searches += 1
