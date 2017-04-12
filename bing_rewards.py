@@ -1,4 +1,5 @@
 """Run Bing Searches Every Day"""
+"""Before running, need to export username, password, and geckodriver path"""
 
 import os
 import random
@@ -6,7 +7,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -19,7 +19,7 @@ def bing_search_web():
     web_searches = 0
     while web_searches < ALLOWED_WEB_SEARCHES:
         try:
-            driver = webdriver.Chrome('./chromedriver')
+            driver = webdriver.Firefox()
             wait = WebDriverWait(driver, 10)
 
             driver.get('https://www.bing.com/')
@@ -60,16 +60,16 @@ def bing_search_web():
         except Exception:
             print "Caught exception. Continuing"
         finally:
-            driver.close()
+            driver.quit()
 
 def bing_search_mobile():
-    opts = Options()
-    opts.add_argument('user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A366 Safari/600.1.4')
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference('general.useragent.override', 'user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A366 Safari/600.1.4')
 
     mobile_searches = 0
     while mobile_searches < ALLOWED_MOBILE_SEARCHES:
         try:
-            driver = webdriver.Chrome('./chromedriver', chrome_options=opts)
+            driver = webdriver.Firefox(profile)
             wait = WebDriverWait(driver, 10)
 
             driver.get('https://www.bing.com/')
@@ -109,7 +109,7 @@ def bing_search_mobile():
         except Exception:
             print "Caught exception. Continuing"
         finally:
-            driver.close()
+            driver.quit()
 
 def generate_search():
     num_words = random.randint(1,5)
