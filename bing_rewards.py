@@ -12,8 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 USERNAME = os.getenv('MICROSOFT_USERNAME')
 PASSWORD = os.getenv('MICROSOFT_PASSWORD')
-ALLOWED_WEB_SEARCHES = 30
-ALLOWED_MOBILE_SEARCHES = 20
+ALLOWED_WEB_SEARCHES = 40
+ALLOWED_MOBILE_SEARCHES = 40
 
 def bing_search_web():
     web_searches = 0
